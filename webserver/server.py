@@ -162,7 +162,7 @@ def index():
 @app.route('/ingredients')
 def ingredients():
   return render_template("entity.html",
-   my_title="Ingredients", my_image="/webserver/templates/salt.svg",
+   my_title="Ingredients", my_image="salt.svg",
    title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!",
    search_desc="Look up certain foods, specific ingredients, meals.")
 
