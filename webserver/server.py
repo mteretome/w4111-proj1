@@ -185,7 +185,7 @@ def episodes():
   return render_template("entity.html",
    my_title="Episodes", my_image="cheese.svg",
    title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore!",
-   search_desc="Look up certain foods, food groups, appertizer ingredients, etc.")
+   search_desc="Look up episode names, air dates, seasons etc.")
 
 
 

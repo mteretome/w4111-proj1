@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <!--  Maria Teresa T CC'22 -->
-{% from "macros.html" import nav_link with context %}.
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -69,37 +68,37 @@
     <div class="row" style="margin-top: 30px;">
       <div class="col-sm justify-content-center text-center">
 
-       <img alt="Salt" src="salt.svg">
+       <img alt="Salt" src="{{ url_for('static', filename='salt.svg') }}">
        <h5 style=" font-weight: bolder;">Ingredients</h5>
        <p class="font-weight-light">Find out what ingredients have been used over the years!</p>
-          <a class="nav-link" style="margin-top: 10px;"href="ingredients.html">Discover </a>
+          <a class="nav-link" style="margin-top: 10px;"href="ingredients">Discover </a>
     
 
     </div>
     <div class="col-sm justify-content-center text-center">
 
-      <img alt="Bread" src="bread.svg">
+      <img alt="Bread" src="{{ url_for('static', filename='bread.svg') }}">
        <h5 style=" font-weight: bolder;">Contestants</h5>
        <p class="font-weight-light">Find out who has participated in Chopped throughout the years!</p>
-          <a class="nav-link" style="margin-top: 10px;"href="ingredients.html">Discover </a>
+          <a class="nav-link" style="margin-top: 10px;"href="ingredients">Discover </a>
      
 
     </div>
     <div class="col-sm justify-content-center text-center">
 
-       <img alt="Wine" src="wine.svg">
+       <img alt="Wine" src="{{ url_for('static', filename='wine.svg') }}">
        <h5 style=" font-weight: bolder;">Judges</h5>
        <p class="font-weight-light">Find out who has judged everything in Chopped!</p>
-          <a class="nav-link" style="margin-top: 10px;"href="ingredients.html">Discover </a>
+          <a class="nav-link" style="margin-top: 10px;"href="ingredients">Discover </a>
       
 
     </div>
     <div class="col-sm justify-content-center text-center">
     
-      <img alt="Cheese" src="cheese.svg">
+      <img alt="Cheese" src="{{ url_for('static', filename='cheese.svg') }}">
        <h5 style=" font-weight: bolder;">Episodes</h5>
        <p class="font-weight-light">Explore Chopped through its more than 500 episode collection!</p>
-       <a class="nav-link" style="margin-top: 10px;"href="ingredients.html">Discover </a>
+       <a class="nav-link" style="margin-top: 10px;"href="ingredients">Discover </a>
 
 
     </div>
