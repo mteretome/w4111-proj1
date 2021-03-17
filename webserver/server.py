@@ -166,6 +166,28 @@ def ingredients():
    title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!",
    search_desc="Look up certain foods, specific ingredients, meals.")
 
+@app.route('/contestants')
+def contestants():
+  return render_template("entity.html",
+   my_title="Contestants", my_image="bread.svg",
+   title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",
+   search_desc="Look up locations, professions, last names, etc.")
+
+@app.route('/judges')
+def judges():
+  return render_template("entity.html",
+   my_title="Judges", my_image="wine.svg",
+   title_desc="Every episode includes three Chefs to be judges, search who they are!",
+   search_desc="Look up names, appearances, etc.")
+
+@app.route('/episodes')
+def episodes():
+  return render_template("entity.html",
+   my_title="Episodes", my_image="cheese.svg",
+   title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore!",
+   search_desc="Look up certain foods, food groups, appertizer ingredients, etc.")
+
+
 
 # Example of adding new data to the database
 @app.route('/add', methods=['POST'])
