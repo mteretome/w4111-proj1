@@ -29,7 +29,7 @@ app = Flask(__name__, template_folder=tmpl_dir)
 #
 #     DATABASEURI = "postgresql://zy2431:123123@34.73.36.248/project1"
 #
-DATABASEURI = "postgresql://user:password@35.243.220.243/project1" # Modify this with your own credentials you received from Joseph!
+DATABASEURI = "postgresql://kg2712:392115@35.243.220.243/project1" # Modify this with your own credentials you received from Joseph!
 
 
 #
@@ -40,13 +40,13 @@ engine = create_engine(DATABASEURI)
 #
 # Example of running queries in your database
 # Note that this will probably not work if you already have a table named 'test' in your database, containing meaningful data. This is only an example showing you how to run queries in your database using SQLAlchemy.
-#
+'''
 engine.execute("""CREATE TABLE IF NOT EXISTS test (
   id serial,
   name text
 );""")
 engine.execute("""INSERT INTO test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace');""")
-
+'''
 
 @app.before_request
 def before_request():
@@ -103,17 +103,19 @@ def index():
 
   # DEBUG: this is debugging code to see what request looks like
   print(request.args)
+  return render_template("index.html")
+
 
 
   #
   # example of a database query
-  #
+  '''
   cursor = g.conn.execute("SELECT name FROM test")
   names = []
   for result in cursor:
     names.append(result['name'])  # can also be accessed using result[0]
   cursor.close()
-
+'''
   #
   # Flask uses Jinja templates, which is an extension to HTML where you can
   # pass data to a template and dynamically generate HTML based on the data
@@ -140,15 +142,15 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
+  '''
   context = dict(data = names)
-
+'''
 
   #
   # render_template looks in the templates/ folder for files.
   # for example, the below file reads template/index.html
   #
-  return render_template("index.html", **context)
-
+ 
 #
 # This is an example of a different path.  You can see it at:
 # 
@@ -157,9 +159,12 @@ def index():
 # Notice that the function name is another() rather than index()
 # The functions for each app.route need to have different names
 #
-@app.route('/another')
-def another():
-  return render_template("another.html")
+@app.route('/ingredients')
+def ingredients():
+  return render_template("entity.html",
+   my_title="Ingredients", my_image="/webserver/templates/salt.svg",
+   title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!",
+   search_desc="Look up certain foods, specific ingredients, meals.")
 
 
 # Example of adding new data to the database
