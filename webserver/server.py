@@ -29,7 +29,7 @@ app = Flask(__name__, template_folder=tmpl_dir)
 #
 #     DATABASEURI = "postgresql://zy2431:123123@34.73.36.248/project1"
 #
-DATABASEURI = "postgresql://kg2712:392115@35.243.220.243/project1" # Modify this with your own credentials you received from Joseph!
+DATABASEURI = "postgresql://kg2712:392115@35.196.186.146/project1" # Modify this with your own credentials you received from Joseph!
 
 
 #
