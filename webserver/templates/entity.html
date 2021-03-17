@@ -51,7 +51,7 @@
       <h1 class="text-center title-text"><img alt="Chopped Database" src="{{ url_for('static', filename='Logo.svg') }}" class="logo img-fluid"> {{my_title}} </h1>
         
         <div class="col no-space justify-content-center text-center" style="padding-right: 30px; padding-left: 30px;">
-          <img alt="{{my_image}}" src="{{my_image}}">
+          <img alt="{{my_image}}" src="{{ url_for('static', filename='{{my_image}}') }}">
            <h5 class="font-weight-light text-center"> {{title_desc}}</h5> </div>
    
   </div>
