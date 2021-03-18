@@ -191,6 +191,7 @@ def episodes():
 
 
 # Example of adding new data to the database
+'''
 @app.route('/add', methods=['POST'])
 def add():
   name = request.form['name']
@@ -202,7 +203,7 @@ def add():
 def login():
     abort(401)
     this_is_never_executed()
-
+'''
 
 if __name__ == "__main__":
   import click
