@@ -65,11 +65,11 @@
       <!-- this is the search place -->
         <!-- search box displayed -->
       {% if my_title='Ingredients' or my_title='Judges'%}
-       {% from "_formhelpers.html" import render_field %}
+       <!-- {% from "_formhelpers.html" import render_field %} -->
           <form method="post">
           <dl>
           <p>
-          {{ render_field(form.search) }}
+          <!-- {{ render_field(form.search) }} -->
           </p></dl>
           <p><input type="submit" value="Search">
           </p></form>
@@ -83,6 +83,7 @@
             <input type=checkbox value="Origin"> Origin  <br/>
 
       {% endif %}
+      
       <!--------------------------- -->
      
     </div>
