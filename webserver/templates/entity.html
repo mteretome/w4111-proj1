@@ -65,22 +65,60 @@
       <!-- this is the search place -->
         <!-- search box displayed -->
       {% if my_title=='Ingredients' or my_title=='Judges' %}
-       {% from "_formhelpers.html" import render_field %}
+      
           <form method="post">
           <dl>
           <p>
-          {{ render_field(form.search) }} 
+       
           </p></dl>
           <p><input type="submit" value="Search">
           </p></form>
+          <button type="button" class="btn btn-custom">Search</button> 
 
           <!-- checboxes displayed -->
       {% else %}
-        <input type=checkbox value="First Name"> First Name   <br/>
-         <input type=checkbox value="Last Name"> Last Name   <br/>
-          <input type=checkbox value="Title"> Title <br/>
-           <input type=checkbox value="Work"> Work <br/>
-            <input type=checkbox value="Origin"> Origin  <br/>
+       <div class="row" style="margin-top: 30px;">
+      <div class="col-sm justify-content-center text-center">
+
+      <input type=checkbox value="First Name"> First Name 
+
+    </div>
+    <div class="col-sm justify-content-center text-center">
+
+              <input type=checkbox value="Last Name"> Last Name  
+     
+
+    </div>
+    <div class="col-sm justify-content-center text-center">
+
+        <input type=checkbox value="Title"> Title 
+      
+
+    </div>
+    <div class="col-sm justify-content-center text-center">
+    
+        <input type=checkbox value="Work"> Work 
+
+
+    </div>
+
+    <div class="col-sm justify-content-center text-center">
+    
+         <input type=checkbox value="Origin"> Origin  
+
+
+    </div>
+    <div class="col-sm justify-content-center text-center">
+
+      <input type=checkbox value="First Name"> First Name 
+
+    </div>
+     <button type="button" class="btn btn-custom">Search</button> 
+     
+    </div>
+         
+ 
+      
 
       {% endif %}
 
