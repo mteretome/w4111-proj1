@@ -66,13 +66,14 @@
         <!-- search box displayed -->
       {% if my_title=='Ingredients' or my_title=='Judges' %}
       
+           <div class="justify-content-center text-center">
           <form method="post">
-          <dl>
           <p>
 
-              <input type=text value="Search something"> 
+          <input type=text value="Search something"> 
           <button type="button" class="btn btn-custom">Search</button> 
           </p></form>
+        </div>
        
           <!-- checboxes displayed -->
       {% else %}
@@ -105,18 +106,15 @@
 
     <div class="col-sm justify-content-center text-center">
     
-         <input type=checkbox value="Origin"> Origin  
+         <input type=checkbox value="Origin"> Origin  </br>
       
 
 
     </div>
   
-
-    <div class="row" style="margin-top: 10px;">
      <button type="button" class="btn btn-custom">Search</button> 
       </form>
 
-     </div>
     </div>
          
  
