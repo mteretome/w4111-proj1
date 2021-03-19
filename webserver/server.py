@@ -177,23 +177,42 @@ def ingredients():
    title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!",
    search_desc="Look up certain foods, specific ingredients, meals.")
 
-@app.route('/contestants')
+@app.route('/contestants', methods = ("GET", "POST"))
 def contestants():
+  column_dict = {'First Name':'first_name','Last Name':'last_name', 'Place of work':'place_of_work' ,'City':'city', 'State':'state'}
   if request.method == 'POST':
-     print(request.form.get("First Name"))
+     query_string = ""
+     columns = []
+     for i in column_dict.keys():
+         if request.form.get(i):
+             columns.append(i);
+             query_string += column_dict[i] + ','
+     
+     if query_string=="":
+         return render_template("entity.html",my_title="Contestants", my_image="bread.svg",title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",search_desc="Look up locations, professions, last names, etc.")
+
+     query_string = query_string[:-1]
+     cursor = g.conn.execute(f"SELECT {query_string}, COUNT(*) AS frequency FROM contestant left join works_in USING (first_name, last_name) GROUP BY {query_string} ORDER BY frequency DESC")
+     contest  = [tuple(columns)]
+     for result in cursor:
+        contest.append(result)  # can also be accessed using result[0]
+     cursor.close()
+     return render_template("results.html",source="contest_search",result=contest)
+
+
   return render_template("entity.html",
    my_title="Contestants", my_image="bread.svg",
    title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",
    search_desc="Look up locations, professions, last names, etc.")
 
-@app.route('/judges')
+@app.route('/judges', methods=('GET','POST'))
 def judges():
   return render_template("entity.html",
    my_title="Judges", my_image="wine.svg",
    title_desc="Every episode includes three Chefs to be judges, search who they are!",
    search_desc="Look up names, appearances, etc.")
 
-@app.route('/episodes')
+@app.route('/episodes', methods=('GET','POST'))
 def episodes():
   return render_template("entity.html",
    my_title="Episodes", my_image="cheese.svg",
