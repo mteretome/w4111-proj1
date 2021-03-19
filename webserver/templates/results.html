@@ -54,7 +54,9 @@
           <img alt="{{my_image}}" src="/static/{{my_image}}">
           <!-- This is where the results should go -->
 	  {%if source=="ingr_search" %}
-		worked
+		{%for row in result%}
+                   <li>{{row}}</li>
+                {%endfor%}
 	  {%endif %}
 
           

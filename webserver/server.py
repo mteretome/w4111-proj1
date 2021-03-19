@@ -29,6 +29,7 @@ app = Flask(__name__, template_folder=tmpl_dir)
 #
 #     DATABASEURI = "postgresql://zy2431:123123@34.73.36.248/project1"
 #
+
 DATABASEURI = "postgresql://kg2712:392115@34.73.36.248/project1" # Modify this with your own credentials you received from Joseph!
 
 
@@ -164,7 +165,12 @@ def ingredients():
    if request.method=='POST':
       input=request.form.get('search-box')
       input=input.strip().lower()
-      return render_template("results.html",source="ingr_search",input=input)
+      cursor = g.conn.execute("select ingredient_name, episode_name, air_date, is_entree, is_appetizer, is_dessert FROM meal_contains RIGHT JOIN cook ON meal_contains.course_id=cook.course_id RIGHT JOIN course ON meal_contains.course_id=course.course_id RIGHT JOIN episode ON episode.series_episode=cook.series_episode WHERE ingredient_name='%s'"%input)
+      ings  = [("ingredient_name","episode_name","air_date", "is_entree","is_appetizer", "is_dessert")]
+      for result in cursor:
+         ings.append(result)  # can also be accessed using result[0]
+      cursor.close()
+      return render_template("results.html",source="ingr_search",result=ings)
 
    return render_template("entity.html",
    my_title="Ingredients", my_image="salt.svg",
@@ -173,6 +179,8 @@ def ingredients():
 
 @app.route('/contestants')
 def contestants():
+  if request.method == 'POST':
+     print(request.form.get("First Name"))
   return render_template("entity.html",
    my_title="Contestants", my_image="bread.svg",
    title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",
