@@ -89,7 +89,7 @@ def teardown_request(exception):
 # see for routing: https://flask.palletsprojects.com/en/1.1.x/quickstart/#routing
 # see for decorators: http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 #
-@app.route('/index')
+@app.route('/')
 def index():
   """
   request is a special object that Flask provides to access web request information:
@@ -159,9 +159,14 @@ def index():
 # Notice that the function name is another() rather than index()
 # The functions for each app.route need to have different names
 #
-@app.route('/ingredients')
+@app.route('/ingredients', methods=('GET','POST'))
 def ingredients():
-  return render_template("entity.html",
+   if request.method=='POST':
+      input=request.form.get('search-box')
+      input=input.strip().lower()
+      return render_template("results.html",source="ingr_search",input=input)
+
+   return render_template("entity.html",
    my_title="Ingredients", my_image="salt.svg",
    title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!",
    search_desc="Look up certain foods, specific ingredients, meals.")
