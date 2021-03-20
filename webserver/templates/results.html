@@ -48,7 +48,7 @@
     <div class="col mx-auto d-block justify-content-center text-center">  
       
       <h1 class="text-center title-text"><img alt="Chopped Database" src="{{ url_for('static', filename='Logo.svg') }}" class="logo img-fluid"> {{my_title}}: Results </h1>
-        <a class="nav-link" href="{{my_title}}"><h3 class="text-center">Explore more {{my_title}}</h3></a>
+        <a class="nav-link" href="{{search_more}}"><button type="button" class="btn btn-custom">Explore more {{search_more}}</button></a>
         <div class="col no-space justify-content-center text-center" style="padding-right: 30px; padding-left: 30px;">
           <img alt="{{my_image}}" src="/static/{{my_image}}">
           <!-- This is where the results should go -->
