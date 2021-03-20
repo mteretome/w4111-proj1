@@ -53,7 +53,7 @@
           <img alt="{{my_image}}" src="/static/{{my_image}}">
         </div>
     <div class="row mx-auto d-block justify-content-center row-about">
-    <div class="col mx-auto d-block ">
+    <div class="table-responsive">
           <!-- This is where the results should go -->
 	  {%if source=="ingr_search"%}
 
@@ -76,7 +76,6 @@
 
     <table class="table table-bordered table-hover">
       {%for row in result%}
-      <tr>  <Th scope="col" class="c1">{{col[0]}}</Tr>
         <TR>
 			     <Th scope="col" class="c1">{{row[0]}}</TD>
            <Th scope="col" class="c2">{{row[1]}}</TD>
