@@ -170,7 +170,7 @@ def ingredients():
       for result in cursor:
          ings.append(result)  # can also be accessed using result[0]
       cursor.close()
-      return render_template("results.html",source="ingr_search",result=ings)
+      return render_template("results.html",my_title="Ingredients",source="ingr_search",result=ings)
 
    return render_template("entity.html",
    my_title="Ingredients", my_image="salt.svg",
@@ -197,7 +197,7 @@ def contestants():
      for result in cursor:
         contest.append(result)  # can also be accessed using result[0]
      cursor.close()
-     return render_template("results.html",source="contest_search",result=contest,no_columns=len(contest))
+     return render_template("results.html",my_title="Contestants",source="contest_search",result=contest,no_columns=len(contest))
 
 
   return render_template("entity.html",

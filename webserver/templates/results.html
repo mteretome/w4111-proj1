@@ -11,7 +11,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-      <script src="https://kit.fontawesome.com/c101ad3555.js" crossorigin="anonymous"></script>
       <title>{{my_title}}</title>
   </head>
 <body>
@@ -49,7 +48,7 @@
     <div class="col mx-auto d-block justify-content-center text-center">  
       
       <h1 class="text-center title-text"><img alt="Chopped Database" src="{{ url_for('static', filename='Logo.svg') }}" class="logo img-fluid"> {{my_title}}: Results </h1>
-        
+        <a class="nav-link" href="{{my_title}}"><h3 class="text-center">Explore more {{my_title}}</h3></a>
         <div class="col no-space justify-content-center text-center" style="padding-right: 30px; padding-left: 30px;">
           <img alt="{{my_image}}" src="/static/{{my_image}}">
           <!-- This is where the results should go -->
@@ -99,16 +98,18 @@
    
   </div>
 
-  <div class="row mx-auto d-block justify-content-center row-about">
+ <!--  <div class="row mx-auto d-block justify-content-center row-about">
     <div class="col mx-auto d-block ">
-      <h3 class="text-center">Explore more {{my_title}}</h3>
-      <h5 class="font-weight-light text-center">{{search_desc}}</h5>
+      
+      
 
 
      
     </div>
      
-    </div>    </div>
+    </div>   -->
+
+      </div>
   </div>
 
 
