@@ -193,7 +193,7 @@ def contestants():
          return render_template("entity.html",my_title="Contestants", my_image="bread.svg",title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",search_desc="Look up locations, professions, last names, etc.")
 
      query_string = query_string[:-1]
-     cursor = g.conn.execute("SELECT {query_string}, COUNT(*) AS frequency FROM contestant left join works_in USING (first_name, last_name) GROUP BY {query_string} ORDER BY frequency DESC")
+     cursor = g.conn.execute(f"SELECT {query_string}, COUNT(*) AS frequency FROM contestant left join works_in USING (first_name, last_name) GROUP BY {query_string} ORDER BY frequency DESC")
      contest  = [tuple(columns+ ["Frequency"])]
      for result in cursor:
         contest.append(result)  # can also be accessed using result[0]
