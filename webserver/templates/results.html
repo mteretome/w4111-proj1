@@ -57,9 +57,9 @@
           <!-- This is where the results should go -->
 	  {%if source=="ingr_search"%}
 
-		<tabl class="table">
+    <table class="table table-borderless table-hover">
 		{%for row in result%}
-    <thead>
+    
                    <TR>
 			<Th scope="col" class="c1">{{row[0]}}</Th>
 			<Th scope="col" class="c2">{{row[1]}}</Th>
@@ -68,18 +68,18 @@
 			<Th scope="col" class="c5">{{row[4]}}</Th>
       <Th scope="col" class="c6">{{row[5]}}</Th>
 		   </TR>
-     </thead>
+     
                 {%endfor%}
 		</table>
 	  {%elif source== "contest_search" %}
 
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-borderless table-hover">
       {%for row in result%}
 
         <TR>
 			     <Th scope="col" class="c1">{{row[0]}}</Th>
-           <Th  class="c2">{{row[1]}}</Th>
+           <Th scope="col" class="c2">{{row[1]}}</Th>
                         
 			 {%if no_columns >2%}
 				  <Th scope="col" class="c3">{{row[2]}}</Th>
