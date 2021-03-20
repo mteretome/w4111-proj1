@@ -53,12 +53,46 @@
         <div class="col no-space justify-content-center text-center" style="padding-right: 30px; padding-left: 30px;">
           <img alt="{{my_image}}" src="/static/{{my_image}}">
           <!-- This is where the results should go -->
-	  {%if source=="ingr_search" or "contest_search" %}
+	  {%if source=="ingr_search"%}
+		<table>
 		{%for row in result%}
-                   <li>{{row}}</li>
+                   <TR>
+			<TD class="c1">{{row[0]}}</TD>
+			<TD class="c2">{{row[1]}}</TD>
+			<TD class="c3">{{row[2]}}</TD>
+			<TD class="c4">{{row[3]}}</TD>
+			<TD class="c5">{{row[4]}}</TD>
+                        <TD class="c6">{{row[5]}}</TD>
+		   </TR>
                 {%endfor%}
+		</table>
+	  {%elif source== "contest_search" %}
+                 <table>
+                     {%for row in result%}
+                       <TR>
+			<TD class="c1">{{row[0]}}</TD>
+                        <TD class="c2">{{row[1]}}</TD>
+                        
+			{%if no_columns >2%}
+				<TD class="c3">{{row[2]}}</TD>
+                        {%endif%}
 
-	  {%endif %}
+                        {%if no_columns >3%}
+                                <TD class="c4">{{row[3]}}</TD>
+                        {%endif%}
+
+                        {%if no_columns >4%}
+                                <TD class="c5">{{row[4]}}</TD>
+                        {%endif%}
+
+                        {%if no_columns >5%}
+                                <TD class="c6">{{row[5]}}</TD>
+                        {%endif%}
+
+                    </TR>
+              	    {%endfor%}
+            </table>
+            {%endif %}
 
           
          <!----------------------------------------->

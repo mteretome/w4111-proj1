@@ -193,11 +193,11 @@ def contestants():
 
      query_string = query_string[:-1]
      cursor = g.conn.execute(f"SELECT {query_string}, COUNT(*) AS frequency FROM contestant left join works_in USING (first_name, last_name) GROUP BY {query_string} ORDER BY frequency DESC")
-     contest  = [tuple(columns)]
+     contest  = [tuple(columns+ ["Frequency"])]
      for result in cursor:
         contest.append(result)  # can also be accessed using result[0]
      cursor.close()
-     return render_template("results.html",source="contest_search",result=contest)
+     return render_template("results.html",source="contest_search",result=contest,no_columns=len(contest))
 
 
   return render_template("entity.html",
