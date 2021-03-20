@@ -208,6 +208,18 @@ def contestants():
 
 @app.route('/judges', methods=('GET','POST'))
 def judges():
+  '''
+  if request.method=='POST':
+      input=request.form.get('search-box')
+      input=input.strip().lower()
+      query = "SELECT WHERE LIKE '%%{s}%%'".format(s=input)
+      cursor = g.conn.execute(query)
+      ings  = [("ingredient_name","episode_name","air_date", "is_entree","is_appetizer", "is_dessert")]
+      for result in cursor:
+         ings.append(result)  # can also be accessed using result[0]
+      cursor.close()
+      return render_template("results.html",my_title="Ingredients",search_more="ingredients",source="ingr_search",result=ings)
+  '''
   return render_template("entity.html",
    my_title="Judges", my_image="wine.svg",
    title_desc="Every episode includes three Chefs to be judges, search who they are!",
