@@ -138,4 +138,30 @@ B.3: Results.html
 	Because the number of columns is dependent on the checkboxes for contestants, code implementation takes into account number of checkboxes and only displays relevant columns
 
 
+C) The PostgreSQL account where your database on our server resides. (This should be the same database that you used for Part 2, but we need you to confirm that we should check that database.)
+The URL of your web application. Once again, please do not turn off your virtual machine after you are done modifying your code and when you are ready to submit, so that your IP address does not change and the URL that you include with your project submission works.
+
+	PostgreSQL account name: Kalpana Ganeshan, kg2712; Password: 392115
+
+	URL: http://34.75.182.236:8111/
+
+
+D) A description of the parts of your original proposal in Part 1 that you implemented, the parts you did not (which hopefully is nothing or something very small), and possibly new features that were not included in the proposal and that you implemented anyway. If you did not implement some part of the proposal in Part 1, explain why.
+
+We have made changes to a few aspects of our project from Part 1, but the core aims have stayed the same. We wanted to implement an application that allowed users to query information from each of the entities and see frequency/instances where their search occurred. 
+We also wanted users to be able to query the entities mostly separately, since queries can run a huge range of topics within the schema and it might not make sense to condense those into a single request.
+Both of those core aspects were implemented in the project. We have separate pages for each entity for users to interact with, and used flask tools such as searchboxes and checkboxes to implement grouping to provide frequency data.
+The one aspect of our project we did not implement was tagging similar ingredients under a category (ex. tagging bass as "fish"). We did not anticipate the difficulty of such a query with the data we had. Implementing this would require adding another dataset to the schema mapping the ingredients to their categories, but many of them are very obscure due to the nature of the show so it was difficult to find a database with the information we needed.
+However, we did add functionality to our project. We were able to extract city and state from the location column of the dataset and include that in our querying capabilities through data cleaning in python. 
+Additionally, we found a way to query the episode names by entering keywords, which is a practical way for users to explore episodes. For example, if a user wanted to find episodes that involved fish, they can query the keyword "fish" in our episode page to get episodes whose titles contain the word "fish" in it. Users can add as many keywords as they would like.
+
+
+E) Briefly describe two of the web pages that require (what you consider) the most interesting database operations in terms of what the pages are used for, how the page is related to the database operations (e.g., inputs on the page are used in such and such way to produce database operations that do such and such), and why you think they are interesting.
+
+Two of the most interesting pages are Contestants and Episodes and seasons. The contestants page is interesting as it allows users to check boxes to group the contestants by state, city, place of work, or name (first or last). This was a difficult query to construct as the user can check any number of boxes.
+We approached this by building the query by going through each checkbox, checking if it was checked, and adding the appropriate query to the query string, which we executed after we exited the loop. Displaying results also proved to be challenging because the number of columns displayed depends on the number of boxes checked.
+The page also has a lot of interesting possibilities - we had a lot of fun trying out different queries to learn more about the contestants! 
+The other most interesting page is the episodes and seasons page. This page allows the user to enter in keywords and the results return episode information for episodes containing the keywords entered. We debated whether to construct the query to only include episodes whose names contained all keywords entered, or return the results of episodes with at least one keyword. After playing around with some queries, we decided display all episodes with at least one of the keywords because that proved to return more interesting results, especially for similar keywords (like "champ" and "win").
+Therefore, this query was also constructed piece by piece, and we had to be clever in how we did so with the UNION keyword in between each query. This page has a lot of interesting applications as well; seeing which keywords are most commonly and least commonly present in episode names could help viewers of the show understand how the episodes are named.
+
 Thank you!
