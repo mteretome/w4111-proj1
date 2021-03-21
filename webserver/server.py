@@ -7,6 +7,9 @@ To run locally:
 Go to http://localhost:8111 in your browser.
 A debugger such as "pdb" may be helpful for debugging.
 Read about it online.
+
+Kalpana Ganeshan kg2712
+Maria Teresa Tome Armijo, mtt2130
 """
 import os
   # accessible as a variable in index.html:
@@ -241,7 +244,6 @@ def episodes():
 		 for i in input[1:]:
 			 new_addition=" UNION " +base_query + " '%%{s}%%'".format(s=i)
 			 query=query+new_addition
-		 print(query)
 		 cursor = g.conn.execute(query)
 		 episodes  = [("season_number"," series_episode"," episode_name","Air_date")]
 		 for result in cursor:
