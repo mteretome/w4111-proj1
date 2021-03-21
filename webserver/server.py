@@ -249,7 +249,7 @@ def episodes():
 		 for result in cursor:
 			  episodes.append(result)  # can also be accessed using result[0]
 		 cursor.close()
-		 return render_template("results.html", head=True,my_title="Episodes and Seasons",search_more="episodes",source="ep_search",result=episodes)
+		 return render_template("results.html", my_title="Episodes and Seasons",search_more="episodes",source="ep_search",result=episodes)
 	return render_template("entity.html",  my_title="Episodes and Seasons", my_image="cheese.svg", title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore! This page provides info on season and episode information", search_desc="Look up episode keywords, separated by commas!")
 
 

@@ -123,22 +123,22 @@
        {%elif source== "ep_search" %}
       <table class="table table-borderless table-hover">
                 {%for row in result%}
-                  {{%if head is True}}
+                  {{%if loop.index-=1%}}
                    <TR>
                         <Th scope="col" class="c1">{{row[0]}}</Th>
                         <Th scope="col" class="c2">{{row[1]}}</Th>
                         <Th scope="col" class="c3">{{row[2]}}</Th>
                         <Th scope="col" class="c4">{{row[3]}}</Th>
                    </TR>
-                   {{%head=False%}}
-                   {{%elif%}}
+                 
+                   {{%endif%}}
                     <TR>
                         <Th  class="c1">{{row[0]}}</Th>
                         <Th  class="c2">{{row[1]}}</Th>
                         <Th  class="c3">{{row[2]}}</Th>
                         <Th  class="c4">{{row[3]}}</Th>
                    </TR>
-                   {{%endif%}}
+                   
 
                 {%endfor%}
                 </table>
