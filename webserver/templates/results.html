@@ -122,8 +122,9 @@
       <!-- EPISODES -->
        {%elif source== "ep_search" %}
       <table class="table table-borderless table-hover">
+              {% set count = namespace(a=0) %}
                 {%for row in result%}
-                  {{%if loop.index-=1%}}
+                  {{% if loop.index==1 %}}
                    <TR>
                         <Th scope="col" class="c1">{{row[0]}}</Th>
                         <Th scope="col" class="c2">{{row[1]}}</Th>
