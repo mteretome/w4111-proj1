@@ -165,6 +165,8 @@ def ingredients():
    if request.method=='POST':
       input=request.form.get('search-box')
       input=input.strip().lower()
+      if input == "":
+         return render_template("entity.html", my_title="Ingredients", my_image="salt.svg", title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!", search_desc="Look up certain ingredients to find out what episodes they were on!")
       query = "SELECT distinct i.ingredient_name, e.episode_name, e.air_date, c.is_entree, c.is_appetizer, c.is_dessert FROM ingredient i,meal_contains RIGHT JOIN cook ON meal_contains.course_id=cook.course_id RIGHT JOIN course c ON meal_contains.course_id=c.course_id RIGHT JOIN episode e ON e.series_episode=cook.series_episode WHERE i.ingredient_name LIKE '%%{s}%%'".format(s=input)
       cursor = g.conn.execute(query)
       ings  = [("ingredient_name","episode_name","air_date", "is_entree","is_appetizer", "is_dessert")]
@@ -190,7 +192,7 @@ def contestants():
              query_string += column_dict[i] + ','
      
      if query_string=="":
-         return render_template("entity.html",my_title="Contestants", my_image="bread.svg",title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",search_desc="Look up locations, professions, last names, etc.")
+         return render_template("entity.html",my_title="Contestants", my_image="bread.svg",title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills!",search_desc="Look up locations, professions, last names, etc.")
 
      query_string = query_string[:-1]
      cursor = g.conn.execute(f"SELECT {query_string}, COUNT(*) AS frequency FROM contestant left join works_in USING (first_name, last_name) GROUP BY {query_string} ORDER BY frequency DESC")
