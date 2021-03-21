@@ -198,7 +198,7 @@ def contestants():
      for result in cursor:
         contest.append(result)  # can also be accessed using result[0]
      cursor.close()
-     return render_template("results.html",my_title="Contestants",search_more="contestants",source="contest_search",result=contest,no_columns=len(contest))
+     return render_template("results.html",my_title="Contestants",search_more="contestants",source="contest_search",result=contest,no_columns=len(contest[0]))
 
 
   return render_template("entity.html",
@@ -208,30 +208,45 @@ def contestants():
 
 @app.route('/judges', methods=('GET','POST'))
 def judges():
-  '''
-  if request.method=='POST':
-      input=request.form.get('search-box')
-      input=input.strip().lower()
-      query = "SELECT WHERE LIKE '%%{s}%%'".format(s=input)
-      cursor = g.conn.execute(query)
-      ings  = [("ingredient_name","episode_name","air_date", "is_entree","is_appetizer", "is_dessert")]
-      for result in cursor:
-         ings.append(result)  # can also be accessed using result[0]
-      cursor.close()
-      return render_template("results.html",my_title="Ingredients",search_more="ingredients",source="ingr_search",result=ings)
-  '''
-  return render_template("entity.html",
-   my_title="Judges", my_image="wine.svg",
-   title_desc="Every episode includes three Chefs to be judges, search who they are!",
-   search_desc="Look up names, appearances, etc.")
+	if request.method=='POST':
+		 input=request.form.get('search-box')
+		 input=input.strip().lower().split(" ")
+		 if len(input)==1:
+			 query = "select first_name, last_name, episode_name, air_date FROM Judges RIGHT JOIN episode ON Judges.series_episode=episode.series_episode WHERE first_name LIKE '%%{s}%%'".format(s=input[0].capitalize())
+		 elif len(input)==2:
+			 query = "select first_name, last_name, episode_name, air_date FROM Judges RIGHT JOIN episode ON Judges.series_episode=episode.series_episode WHERE first_name LIKE '%%{s}%%' AND last_name LIKE '%%{p}%%'".format(s=input[0].capitalize(), p=input[1].capitalize())
+		 else:
+			 return render_template("entity.html", my_title="Judges", my_image="wine.svg", title_desc="Every episode includes three Chefs to be judges, search who they are!",search_desc="Look up names, Ex: Alex Guarnaschelli")
+		 cursor = g.conn.execute(query)
+		 judges  = [("First Name", "Last_name", "Episode_name", "Air_date")]
+		 for result in cursor:
+			 judges.append(result)  # can also be accessed using result[0]
+		 cursor.close()
+		 return render_template("results.html",my_title="Judges",search_more="judges",source="judge_search",result=judges)
+	return render_template("entity.html", my_title="Judges", my_image="wine.svg", title_desc="Every episode includes three Chefs to be judges, search who they are!",search_desc="Look up names Ex: Alex Guarnaschelli")
 
 @app.route('/episodes', methods=('GET','POST'))
 def episodes():
-  return render_template("entity.html",
-   my_title="Episodes", my_image="cheese.svg",
-   title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore!",
-   search_desc="Look up episode names, air dates, seasons etc.")
+	if request.method=='POST':
+		 input=request.form.get('search-box')
+		 input=input.strip().lower().split(",")
+		 input=[i.strip().capitalize() for i in input]
+		 if len(input) == 0:
+			 return render_template("entity.html",  my_title="Episodes and Seasons", my_image="cheese.svg", title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore! This page provides info on season and episode information", search_desc="Look up episode keywords, separated by commas!")
 
+		 base_query="SELECT season_number, series_episode, episode_name, air_date FROM aired_in RIGHT JOIN episode USING (series_episode) WHERE episode_name LIKE"
+		 query=base_query + " '%%{s}%%'".format(s=input[0])
+		 for i in input[1:]:
+			 new_addition=" UNION " +base_query + " '%%{s}%%'".format(s=i)
+			 query=query+new_addition
+		 print(query)
+		 cursor = g.conn.execute(query)
+		 episodes  = [("season_number"," series_episode"," episode_name","Air_date")]
+		 for result in cursor:
+			  episodes.append(result)  # can also be accessed using result[0]
+		 cursor.close()
+		 return render_template("results.html",my_title="Episodes and Seasons",search_more="episodes",source="ep_search",result=judges)
+	return render_template("entity.html",  my_title="Episodes and Seasons", my_image="cheese.svg", title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore! This page provides info on season and episode information", search_desc="Look up episode keywords, separated by commas!")
 
 
 

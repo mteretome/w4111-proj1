@@ -37,7 +37,7 @@
         <a class="nav-link" href="judges">Judges</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="episodes">Episodes</a>
+        <a class="nav-link" href="episodes">Episodes and Seasons</a>
       </li>
     </ul>
   </div>
@@ -104,11 +104,35 @@
             {%endfor%}
             </table>
       <!-- JUDGES -->
-      {%elif source== "judg_search" %}
+      {%elif source== "judge_search" %}
+       
+      <table class="table table-borderless table-hover">
+                {%for row in result%}
+
+                   <TR>
+                        <Th scope="col" class="c1">{{row[0]}}</Th>
+                        <Th scope="col" class="c2">{{row[1]}}</Th>
+                        <Th scope="col" class="c3">{{row[2]}}</Th>
+                        <Th scope="col" class="c4">{{row[3]}}</Th>
+                   </TR>
+
+                {%endfor%}
+                </table>
 
       <!-- EPISODES -->
        {%elif source== "ep_search" %}
+      <table class="table table-borderless table-hover">
+                {%for row in result%}
 
+                   <TR>
+                        <Th scope="col" class="c1">{{row[0]}}</Th>
+                        <Th scope="col" class="c2">{{row[1]}}</Th>
+                        <Th scope="col" class="c3">{{row[2]}}</Th>
+                        <Th scope="col" class="c4">{{row[3]}}</Th>
+                   </TR>
+
+                {%endfor%}
+                </table>
       
       {%endif %}
 
