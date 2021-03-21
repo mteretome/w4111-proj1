@@ -124,7 +124,7 @@
       <table class="table table-borderless table-hover">
               {% set count = namespace(a=0) %}
                 {%for row in result%}
-                  {{% if loop.index==1 %}}
+                  {% if loop.index==1 %}
                    <TR>
                         <Th scope="col" class="c1">{{row[0]}}</Th>
                         <Th scope="col" class="c2">{{row[1]}}</Th>
@@ -132,7 +132,7 @@
                         <Th scope="col" class="c4">{{row[3]}}</Th>
                    </TR>
                  
-                   {{%endif%}}
+                   {%endif%}
                     <TR>
                         <Th  class="c1">{{row[0]}}</Th>
                         <Th  class="c2">{{row[1]}}</Th>
