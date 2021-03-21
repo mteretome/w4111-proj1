@@ -63,7 +63,7 @@
 
       <!-- this is the search place -->
         <!-- search box displayed -->
-      {% if my_title=='Ingredients' or my_title=='Judges' %}
+      {% if my_title=='Ingredients' or my_title=='Judges'%}
       
            <div class="justify-content-center text-center">
           <form method="post">
@@ -73,7 +73,16 @@
           <button type="submit" class="btn btn-custom" >Search</button> 
           </p></form>
         </div>
-       
+       {% elif my_title=='Episodes and Seasons'%}
+	           <div class="justify-content-center text-center">
+          <form method="post">
+          <p>
+
+          <input type="text" class="form-control" name="search-box" value="Search keywords, separated by commas">
+          <button type="submit" class="btn btn-custom" >Search</button>
+          </p></form>
+        </div>
+
           <!-- checboxes displayed -->
       {% else %}
        <div class="row" style="margin-top: 30px;">

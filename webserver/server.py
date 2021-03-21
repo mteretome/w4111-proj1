@@ -176,7 +176,7 @@ def ingredients():
    return render_template("entity.html",
    my_title="Ingredients", my_image="salt.svg",
    title_desc="Every episode uses a set of different ingredients placed on a basket for the three meals the Chefs cook!",
-   search_desc="Look up certain foods, specific ingredients, meals.")
+   search_desc="Look up certain ingredients to find out what episodes they were on!")
 
 @app.route('/contestants', methods = ("GET", "POST"))
 def contestants():
@@ -203,8 +203,8 @@ def contestants():
 
   return render_template("entity.html",
    my_title="Contestants", my_image="bread.svg",
-   title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Here are some suggested search queries!",
-   search_desc="Look up locations, professions, last names, etc.")
+   title_desc="Every episode invites four Chefs from all over the United States to tell their stories and test their skills! Select some checkboxes to group contestants",
+   search_desc="Check boxes to group contestants.")
 
 @app.route('/judges', methods=('GET','POST'))
 def judges():
@@ -216,14 +216,14 @@ def judges():
 		 elif len(input)==2:
 			 query = "select first_name, last_name, episode_name, air_date FROM Judges RIGHT JOIN episode ON Judges.series_episode=episode.series_episode WHERE first_name LIKE '%%{s}%%' AND last_name LIKE '%%{p}%%'".format(s=input[0].capitalize(), p=input[1].capitalize())
 		 else:
-			 return render_template("entity.html", my_title="Judges", my_image="wine.svg", title_desc="Every episode includes three Chefs to be judges, search who they are!",search_desc="Look up names, Ex: Alex Guarnaschelli")
+			 return render_template("entity.html", my_title="Judges", my_image="wine.svg", title_desc="Every episode includes three Chefs to be judges, search who they are!",search_desc="Look up a first name or first and last name separated by a space, Ex: Alex Guarnaschelli")
 		 cursor = g.conn.execute(query)
 		 judges  = [("First Name", "Last_name", "Episode_name", "Air_date")]
 		 for result in cursor:
 			 judges.append(result)  # can also be accessed using result[0]
 		 cursor.close()
 		 return render_template("results.html",my_title="Judges",search_more="judges",source="judge_search",result=judges)
-	return render_template("entity.html", my_title="Judges", my_image="wine.svg", title_desc="Every episode includes three Chefs to be judges, search who they are!",search_desc="Look up names Ex: Alex Guarnaschelli")
+	return render_template("entity.html", my_title="Judges", my_image="wine.svg", title_desc="Every episode includes three Chefs to be judges, search names to get info on what episodes they've judged!",search_desc="Look up a first name, or first and last name separated by a space Ex: Alex Guarnaschelli")
 
 @app.route('/episodes', methods=('GET','POST'))
 def episodes():
@@ -245,7 +245,7 @@ def episodes():
 		 for result in cursor:
 			  episodes.append(result)  # can also be accessed using result[0]
 		 cursor.close()
-		 return render_template("results.html",my_title="Episodes and Seasons",search_more="episodes",source="ep_search",result=judges)
+		 return render_template("results.html",my_title="Episodes and Seasons",search_more="episodes",source="ep_search",result=episodes)
 	return render_template("entity.html",  my_title="Episodes and Seasons", my_image="cheese.svg", title_desc="With 26 seasons spanning over a little more than 10 years there are plenty of episodes to lookup and explore! This page provides info on season and episode information", search_desc="Look up episode keywords, separated by commas!")
 
 
