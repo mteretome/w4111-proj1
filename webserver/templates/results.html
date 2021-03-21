@@ -125,22 +125,23 @@
               {% set count = namespace(a=0) %}
                 {%for row in result%}
                   {% if loop.index==1 %}
+                  <thead class="table-custom">
                    <TR>
                         <Th scope="col" class="c1">{{row[0]}}</Th>
                         <Th scope="col" class="c2">{{row[1]}}</Th>
                         <Th scope="col" class="c3">{{row[2]}}</Th>
                         <Th scope="col" class="c4">{{row[3]}}</Th>
                    </TR>
-                 
-                   {%endif%}
+                 </thead>
+                   {%elif%}
                     <TR>
-                        <Th  class="c1">{{row[0]}}</Th>
-                        <Th  class="c2">{{row[1]}}</Th>
-                        <Th  class="c3">{{row[2]}}</Th>
-                        <Th  class="c4">{{row[3]}}</Th>
+                        <Td  scope="row" class="c1">{{row[0]}}</Td>
+                        <Td  class="c2">{{row[1]}}</Td>
+                        <Td  class="c3">{{row[2]}}</Td>
+                        <Td  class="c4">{{row[3]}}</Td>
                    </TR>
                    
-
+                {%endif%}
                 {%endfor%}
                 </table>
       
