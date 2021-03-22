@@ -92,50 +92,28 @@
 
     <table class="table table-borderless table-hover">
       {%for row in result%}
-          {% if loop.index==1 %}
-           <thead class="table-custom thead-dark">
-            <TR>
-            <Th scope="col" class="c1">{{row[0]}}</Th>
-            <Th scope="col" class="c2">{{row[1]}}</Th>
-
-
-          {%elif loop.index>1%}
 
         <TR>
-			     <Td scope="row" class="c1">{{row[0]}}</Td>
-           <Td class="c2">{{row[1]}}</Td>
+			     <Th scope="col" class="c1">{{row[0]}}</Th>
+           <Th scope="col" class="c2">{{row[1]}}</Th>
                         
 			 {%if no_columns >2%}
-           {% if loop.index==1 %}
-           <Th scope="col" class="c3">{{row[2]}}</Th>
-          {%elif loop.index>1%}
-
-				  <Td class="c3">{{row[2]}}</Td>
+				  <Th scope="col" class="c3">{{row[2]}}</Th>
              {%endif%}
 
       {%if no_columns >3%}
-       {% if loop.index==1 %}
           <Th scope="col" class="c4">{{row[3]}}</Th>
-          {%elif loop.index>1%}
-          <Td class="c4">{{row[3]}}</Td>
             {%endif%}
 
       {%if no_columns >4%}
-        {% if loop.index==1 %}
           <Th scope="col" class="c5">{{row[4]}}</Th>
-          {%elif loop.index>1%}
-          <Td class="c5">{{row[4]}}</Td>
             {%endif%}
 
       {%if no_columns >5%}
-       {% if loop.index==1 %}
           <Th scope="col" class="c6">{{row[5]}}</Th>
-          {%elif loop.index>1%}
-          <Td class="c6">{{row[5]}}</Td>
             {%endif%}
 
             </TR>
-            {%endif%}
             {%endfor%}
             </table>
       <!-- JUDGES -->
