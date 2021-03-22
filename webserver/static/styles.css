@@ -130,8 +130,9 @@ h3{
 
 }
 
-.thead-dark{
+th{
 	background-color: #D46F31;
+	color: white;
 }
 
 
