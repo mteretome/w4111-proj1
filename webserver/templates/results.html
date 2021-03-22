@@ -60,16 +60,29 @@
 
     <table class="table table-borderless table-hover">
 		{%for row in result%}
+                  {% if loop.index==1 %}
+                  <thead class="table-custom thead-dark">
+                   <TR>
+                        <Th scope="col" class="c1">{{row[0]}}</Th>
+                        <Th scope="col" class="c2">{{row[1]}}</Th>
+                        <Th scope="col" class="c3">{{row[2]}}</Th>
+                        <Th scope="col" class="c4">{{row[3]}}</Th>
+                        <Th scope="col" class="c5">{{row[4]}}</Th>
+                        <Th scope="col" class="c6">{{row[5]}}</Th>
+                   </TR>
+                 </thead>
+                   {%elif loop.index>1%}
+
     
                    <TR>
-			<Th scope="col" class="c1">{{row[0]}}</Th>
-			<Th scope="col" class="c2">{{row[1]}}</Th>
-			<Th scope="col" class="c3">{{row[2]}}</Th>
-			<Th scope="col" class="c4">{{row[3]}}</Th>
-			<Th scope="col" class="c5">{{row[4]}}</Th>
-      <Th scope="col" class="c6">{{row[5]}}</Th>
+			<Td scope="row" class="c1">{{row[0]}}</Td>
+			<Td  class="c2">{{row[1]}}</Td>
+			<Td class="c3">{{row[2]}}</Td>
+			<Td class="c4">{{row[3]}}</Td>
+			<Td class="c5">{{row[4]}}</Td>
+      <Td class="c6">{{row[5]}}</Td>
 		   </TR>
-     
+                {%endif%}
                 {%endfor%}
 		</table>
 
@@ -79,28 +92,50 @@
 
     <table class="table table-borderless table-hover">
       {%for row in result%}
+          {% if loop.index==1 %}
+           <thead class="table-custom thead-dark">
+            <TR>
+            <Th scope="col" class="c1">{{row[0]}}</Th>
+            <Th scope="col" class="c2">{{row[1]}}</Th>
+
+
+          {%elif loop.index>1%}
 
         <TR>
-			     <Th scope="col" class="c1">{{row[0]}}</Th>
-           <Th scope="col" class="c2">{{row[1]}}</Th>
+			     <Td scope="row" class="c1">{{row[0]}}</Td>
+           <Td class="c2">{{row[1]}}</Td>
                         
 			 {%if no_columns >2%}
-				  <Th scope="col" class="c3">{{row[2]}}</Th>
+           {% if loop.index==1 %}
+           <Th scope="col" class="c3">{{row[2]}}</Th>
+          {%elif loop.index>1%}
+
+				  <Td class="c3">{{row[2]}}</Td>
              {%endif%}
 
       {%if no_columns >3%}
+       {% if loop.index==1 %}
           <Th scope="col" class="c4">{{row[3]}}</Th>
+          {%elif loop.index>1%}
+          <Td class="c4">{{row[3]}}</Td>
             {%endif%}
 
       {%if no_columns >4%}
+        {% if loop.index==1 %}
           <Th scope="col" class="c5">{{row[4]}}</Th>
+          {%elif loop.index>1%}
+          <Td class="c5">{{row[4]}}</Td>
             {%endif%}
 
       {%if no_columns >5%}
+       {% if loop.index==1 %}
           <Th scope="col" class="c6">{{row[5]}}</Th>
+          {%elif loop.index>1%}
+          <Td class="c6">{{row[5]}}</Td>
             {%endif%}
 
             </TR>
+            {%endif%}
             {%endfor%}
             </table>
       <!-- JUDGES -->
@@ -108,24 +143,34 @@
        
       <table class="table table-borderless table-hover">
                 {%for row in result%}
-
+                  {% if loop.index==1 %}
+                  <thead class="table-custom thead-dark">
                    <TR>
                         <Th scope="col" class="c1">{{row[0]}}</Th>
                         <Th scope="col" class="c2">{{row[1]}}</Th>
                         <Th scope="col" class="c3">{{row[2]}}</Th>
                         <Th scope="col" class="c4">{{row[3]}}</Th>
                    </TR>
+                 </thead>
+                   {%elif loop.index>1%}
 
+
+                   <TR>
+                        <Td  scope="row" class="c1">{{row[0]}}</Td>
+                        <Td  class="c2">{{row[1]}}</Td>
+                        <Td  class="c3">{{row[2]}}</Td>
+                        <Td  class="c4">{{row[3]}}</Td>
+                   </TR>
+                {%endif%}
                 {%endfor%}
                 </table>
 
       <!-- EPISODES -->
        {%elif source== "ep_search" %}
       <table class="table table-borderless table-hover">
-              {% set count = namespace(a=0) %}
                 {%for row in result%}
                   {% if loop.index==1 %}
-                  <thead class="table-custom">
+                  <thead class="table-custom thead-dark">
                    <TR>
                         <Th scope="col" class="c1">{{row[0]}}</Th>
                         <Th scope="col" class="c2">{{row[1]}}</Th>
